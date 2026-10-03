@@ -1,0 +1,9 @@
+{
+  "name": "오늘뭐입지",
+  "image": "mcr.microsoft.com/devcontainers/python:3",
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": { "label": "오늘뭐입지", "onAutoForward": "openPreview" }
+  },
+  "postAttachCommand": "python3 -m http.server 8000"
+}
