@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>오늘뭐입지 · 날씨별 코디 추천</title>
+  <meta name="description" content="날짜와 지역의 기온·체감온도·강수·바람을 분석해 그날의 옷차림을 추천합니다.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👕</text></svg>">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="./">👕 <b>오늘뭐입지</b></a>
+      <span class="brand-sub">날씨 기반 데일리 코디</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- 검색 영역 -->
+    <section class="card controls">
+      <div class="field">
+        <label for="cityInput">지역</label>
+        <div class="city-box">
+          <input id="cityInput" type="text" placeholder="도시 검색 (예: 서울, 부산, 청주)" autocomplete="off">
+          <button id="geoBtn" class="icon-btn" title="현재 위치로" aria-label="현재 위치로">📍</button>
+          <ul id="suggest" class="suggest" hidden></ul>
+        </div>
+      </div>
+      <div class="field">
+        <label for="dateInput">날짜</label>
+        <div class="date-box">
+          <button id="prevDay" class="icon-btn" aria-label="이전 날">‹</button>
+          <input id="dateInput" type="date">
+          <button id="nextDay" class="icon-btn" aria-label="다음 날">›</button>
+          <button id="todayBtn" class="chip-btn">오늘</button>
+        </div>
+      </div>
+    </section>
+
+    <p id="status" class="status" hidden></p>
+
+    <!-- 결과 영역 -->
+    <section id="result" class="result" hidden>
+      <div class="grid">
+        <article class="card weather-card">
+          <div class="wc-head">
+            <div>
+              <p class="place" id="placeName"></p>
+              <p class="date-label" id="dateLabel"></p>
+            </div>
+            <span class="badge" id="dataBadge"></span>
+          </div>
+          <div class="wc-main">
+            <div class="wc-icon" id="wIcon"></div>
+            <div>
+              <p class="wc-desc" id="wDesc"></p>
+              <p class="wc-temp"><span id="tMax"></span><span class="sep">/</span><span id="tMin" class="tmin"></span></p>
+              <p class="wc-compare" id="compare"></p>
+            </div>
+          </div>
+          <ul class="stats" id="stats"></ul>
+        </article>
+
+        <article class="card outfit-card">
+          <span class="band-chip" id="bandChip"></span>
+          <h2 id="outfitTitle"></h2>
+          <p id="outfitSummary" class="muted"></p>
+          <div class="items" id="items"></div>
+          <h4 class="tips-title">오늘의 코디 팁</h4>
+          <ul class="tips" id="tips"></ul>
+        </article>
+      </div>
+
+      <article class="card">
+        <h3 class="card-title">시간대별 기온</h3>
+        <div id="chart" class="chart"></div>
+      </article>
+    </section>
+
+    <!-- 기온별 가이드 -->
+    <section class="card">
+      <h3 class="card-title">기온별 옷차림 가이드 <small class="muted">체감 평균기온 기준</small></h3>
+      <div class="guide" id="guide"></div>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    날씨 데이터: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>
+    · 최근 3개월~16일 후는 예보/관측, 그 이전은 과거 기록 데이터를 사용합니다.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
